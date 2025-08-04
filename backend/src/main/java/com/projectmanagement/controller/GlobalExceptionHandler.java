@@ -36,6 +36,16 @@ public class GlobalExceptionHandler {
         response.put("message", ex.getMessage());
         response.put("status", "error");
         
+        // Authentication-related errors
+        if (ex.getMessage().contains("Username is already taken")) {
+            return ResponseEntity.badRequest().body(response);
+        } else if (ex.getMessage().contains("Email is already in use")) {
+            return ResponseEntity.badRequest().body(response);
+        } else if (ex.getMessage().contains("Invalid username or password")) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+        }
+        
+        // Resource-related errors
         if (ex.getMessage().equals("User not found")) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
         } else if (ex.getMessage().equals("Project not found")) {

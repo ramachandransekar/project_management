@@ -3,6 +3,8 @@ package com.projectmanagement.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -48,6 +50,16 @@ public class TestController {
     public ResponseEntity<Map<String, Object>> authTest() {
         Map<String, Object> response = new HashMap<>();
         response.put("message", "Authentication is working!");
+        response.put("timestamp", System.currentTimeMillis());
+        response.put("status", "success");
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/test-signup")
+    public ResponseEntity<Map<String, Object>> testSignup(@RequestBody Map<String, Object> request) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "Test signup endpoint reached successfully!");
+        response.put("receivedData", request);
         response.put("timestamp", System.currentTimeMillis());
         response.put("status", "success");
         return ResponseEntity.ok(response);

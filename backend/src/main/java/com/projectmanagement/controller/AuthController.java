@@ -10,6 +10,8 @@ import com.projectmanagement.dto.UserListResponse;
 import com.projectmanagement.model.User;
 import com.projectmanagement.service.AuthService;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,25 +22,38 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
+    private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
+    
     @Autowired
     AuthService authService;
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+        logger.info("Signin request received for username/email: {}", loginRequest.getUsernameOrEmail());
+        
         try {
             AuthResponse response = authService.authenticateUser(loginRequest);
+            logger.info("Signin successful for username/email: {}", loginRequest.getUsernameOrEmail());
             return ResponseEntity.ok(response);
         } catch (Exception e) {
+            logger.error("Signin failed for username/email: {} - Error: {}", loginRequest.getUsernameOrEmail(), e.getMessage(), e);
             return ResponseEntity.badRequest().body("Error: " + e.getMessage());
         }
     }
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+        logger.info("Signup request received for username: {}", signUpRequest.getUsername());
+        logger.debug("Signup request data: username={}, email={}, firstName={}, lastName={}", 
+            signUpRequest.getUsername(), signUpRequest.getEmail(), 
+            signUpRequest.getFirstName(), signUpRequest.getLastName());
+        
         try {
             SignupResponse response = authService.registerUser(signUpRequest);
+            logger.info("Signup successful for username: {}", signUpRequest.getUsername());
             return ResponseEntity.ok(response);
         } catch (Exception e) {
+            logger.error("Signup failed for username: {} - Error: {}", signUpRequest.getUsername(), e.getMessage(), e);
             return ResponseEntity.badRequest().body("Error: " + e.getMessage());
         }
     }
