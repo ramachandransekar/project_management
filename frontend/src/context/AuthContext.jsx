@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../utils/axiosConfig';
 
 const AuthContext = createContext();
 
@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
     
     if (token && userData) {
       setUser(JSON.parse(userData));
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     }
     
     setLoading(false);
@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (usernameOrEmail, password) => {
     try {
-      const response = await axios.post('https://project-management-1-kkb0.onrender.com/api/auth/signin', {
+      const response = await api.post('/auth/signin', {
         usernameOrEmail,
         password
       });
@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(userData));
       
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       setUser(userData);
       
       return { success: true };
@@ -54,7 +54,7 @@ export const AuthProvider = ({ children }) => {
 
   const signup = async (userData) => {
     try {
-      const response = await axios.post('https://project-management-1-kkb0.onrender.com/api/auth/signup', userData);
+      const response = await api.post('/auth/signup', userData);
       
       // Signup response doesn't include token, so user is not logged in
       return { 
@@ -73,7 +73,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    delete axios.defaults.headers.common['Authorization'];
+    delete api.defaults.headers.common['Authorization'];
     setUser(null);
   };
 

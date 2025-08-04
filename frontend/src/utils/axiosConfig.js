@@ -2,8 +2,9 @@ import axios from 'axios';
 
 // Create axios instance
 const api = axios.create({
-  baseURL: 'https://project-management-1-kkb0.onrender.com/api',
+  baseURL: import.meta.env.DEV ? '/api' : 'https://project-management-1-kkb0.onrender.com/api',
   timeout: 10000,
+  withCredentials: true,
 });
 
 // Request interceptor to add auth token and log requests
@@ -14,8 +15,12 @@ api.interceptors.request.use(
       config.headers.Authorization = `Bearer ${token}`;
     }
     
+    // Add CORS headers
+    config.headers['Content-Type'] = 'application/json';
+    
     console.log(`Making ${config.method?.toUpperCase()} request to: ${config.url}`);
-    console.log('Headers:', config.headers);
+    console.log('Request headers:', config.headers);
+    console.log('Request data:', config.data);
     
     return config;
   },
@@ -29,10 +34,14 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => {
     console.log(`Response from ${response.config.url}:`, response.status);
+    console.log('Response headers:', response.headers);
+    console.log('Response data:', response.data);
     return response;
   },
   (error) => {
     console.error(`Error from ${error.config?.url}:`, error.response?.status, error.response?.data);
+    console.error('Error response headers:', error.response?.headers);
+    console.error('Error config:', error.config);
     
     // Handle 401 Unauthorized errors
     if (error.response?.status === 401) {

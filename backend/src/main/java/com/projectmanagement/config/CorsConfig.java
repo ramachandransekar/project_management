@@ -17,7 +17,9 @@ public class CorsConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOriginPatterns(getAllowedOrigins().toArray(new String[0]))
+                .allowedOriginPatterns("http://localhost:[*]", "http://127.0.0.1:[*]", 
+                                      "https://project-management-ynzl.vercel.app",
+                                      "https://project-management-frontend.onrender.com")
                 .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
                 .allowedHeaders("Authorization", "Content-Type", "X-Requested-With", "Accept", "Origin", 
                                "Access-Control-Request-Method", "Access-Control-Request-Headers", "x-auth-token")
@@ -31,8 +33,13 @@ public class CorsConfig implements WebMvcConfigurer {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         
-        // Allow specific origins instead of wildcard
-        configuration.setAllowedOriginPatterns(getAllowedOrigins());
+        // Allow localhost with any port and production origins
+        configuration.setAllowedOriginPatterns(Arrays.asList(
+            "http://localhost:[*]",
+            "http://127.0.0.1:[*]",
+            "https://project-management-ynzl.vercel.app",
+            "https://project-management-frontend.onrender.com"
+        ));
         
         // Allow all HTTP methods
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
@@ -72,8 +79,14 @@ public class CorsConfig implements WebMvcConfigurer {
         return Arrays.asList(
             "http://localhost:3000",           // Local development
             "http://localhost:5173",           // Vite dev server
+            "http://localhost:5174",           // Vite dev server (alternative port)
+            "http://localhost:5175",           // Vite dev server (alternative port)
             "http://127.0.0.1:3000",          // Alternative local
             "http://127.0.0.1:5173",          // Alternative Vite
+            "http://127.0.0.1:5174",          // Alternative Vite (alternative port)
+            "http://127.0.0.1:5175",          // Alternative Vite (alternative port)
+            "http://localhost:4173",          // Vite preview server
+            "http://127.0.0.1:4173",          // Alternative Vite preview
             "https://project-management-ynzl.vercel.app", // Production frontend on Vercel
             "https://project-management-frontend.onrender.com" // Alternative production frontend
         );

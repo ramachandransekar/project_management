@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import api from '../utils/axiosConfig';
 import ProjectCreation from './ProjectCreation';
 import ProjectView from './ProjectView';
 import ProjectEdit from './ProjectEdit';
@@ -47,19 +48,8 @@ const Dashboard = () => {
 
   const fetchUserProjects = async () => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) return;
-
-              const response = await fetch('https://project-management-1-kkb0.onrender.com/api/projects', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-
-      if (response.ok) {
-        const projects = await response.json();
-        setAllProjects(projects); // Store all projects
-      }
+      const response = await api.get('/projects');
+      setAllProjects(response.data); // Store all projects
     } catch (error) {
       console.error('Error fetching projects:', error);
     }
@@ -67,23 +57,13 @@ const Dashboard = () => {
 
   const fetchProjectStatistics = async () => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) return;
-
-              const response = await fetch('https://project-management-1-kkb0.onrender.com/api/projects/statistics', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
+      const response = await api.get('/projects/statistics');
+      const stats = response.data;
+      setProjectStats({
+        activeProjects: stats.activeProjects,
+        pendingTasks: stats.pendingTasks || 0, // Use real data from API
+        teamMembers: 8 // Mock data for now
       });
-
-      if (response.ok) {
-        const stats = await response.json();
-        setProjectStats({
-          activeProjects: stats.activeProjects,
-          pendingTasks: stats.pendingTasks || 0, // Use real data from API
-          teamMembers: 8 // Mock data for now
-        });
-      }
     } catch (error) {
       console.error('Error fetching statistics:', error);
     }
@@ -123,31 +103,19 @@ const Dashboard = () => {
   const handleDeleteProject = async (projectId) => {
     setLoading(true);
     try {
-      const token = localStorage.getItem('token');
-      if (!token) return;
-
-              const response = await fetch(`https://project-management-1-kkb0.onrender.com/api/projects/${projectId}`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-
-      if (response.ok) {
-        setAllProjects(prevProjects => 
-          prevProjects.filter(project => project.id !== projectId)
-        );
-        fetchProjectStatistics(); // Refresh statistics
-      } else if (response.status === 409) {
+      const response = await api.delete(`/projects/${projectId}`);
+      setAllProjects(prevProjects => 
+        prevProjects.filter(project => project.id !== projectId)
+      );
+      fetchProjectStatistics(); // Refresh statistics
+    } catch (error) {
+      console.error('Error deleting project:', error);
+      if (error.response?.status === 409) {
         // Project has associated tasks
-        const errorData = await response.json();
-        console.error('Project has associated tasks:', errorData);
+        console.error('Project has associated tasks:', error.response.data);
       } else {
         alert('Failed to delete project. Please try again.');
       }
-    } catch (error) {
-      console.error('Error deleting project:', error);
-      alert('Failed to delete project. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -155,20 +123,8 @@ const Dashboard = () => {
 
   const checkProjectTasks = async (projectId) => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) return false;
-
-              const response = await fetch(`https://project-management-1-kkb0.onrender.com/api/tasks?projectId=${projectId}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-
-      if (response.ok) {
-        const tasks = await response.json();
-        return tasks.length > 0;
-      }
-      return false;
+      const response = await api.get(`/tasks?projectId=${projectId}`);
+      return response.data.length > 0;
     } catch (error) {
       console.error('Error checking project tasks:', error);
       return false;
