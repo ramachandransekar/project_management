@@ -12,7 +12,7 @@ import UserCreation from './UserCreation';
 import './Dashboard.css';
 
 const Dashboard = () => {
-  const { user, logout } = useAuth();
+  const { user, logout, loading } = useAuth();
   const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState('dashboard');
   const [allProjects, setAllProjects] = useState([]);
@@ -23,8 +23,13 @@ const Dashboard = () => {
   });
   const [viewingProject, setViewingProject] = useState(null);
   const [editingProject, setEditingProject] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [deleteModal, setDeleteModal] = useState({ show: false, project: null, hasTasks: false });
+
+  // Show loading while authentication is being checked
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   // Redirect if not authenticated
   if (!user) {
@@ -34,9 +39,11 @@ const Dashboard = () => {
 
   // Fetch user's projects and statistics on component mount
   useEffect(() => {
-    fetchUserProjects();
-    fetchProjectStatistics();
-  }, []);
+    if (user) {
+      fetchUserProjects();
+      fetchProjectStatistics();
+    }
+  }, [user]);
 
   const fetchUserProjects = async () => {
     try {

@@ -16,10 +16,25 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtAuthenticationEntryPoint.class);
 
-    @Override
+        @Override
     public void commence(HttpServletRequest request, HttpServletResponse response,
-                         AuthenticationException authException) throws IOException, ServletException {
-        logger.error("Unauthorized error: {}", authException.getMessage());
+            AuthenticationException authException) throws IOException, ServletException {
+        logger.error("Unauthorized error: {} - Request: {} {} - Headers: {}", 
+            authException.getMessage(), 
+            request.getMethod(), 
+            request.getRequestURI(),
+            getRequestHeaders(request));
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Error: Unauthorized");
+    }
+    
+    private String getRequestHeaders(HttpServletRequest request) {
+        StringBuilder headers = new StringBuilder();
+        java.util.Enumeration<String> headerNames = request.getHeaderNames();
+        while (headerNames.hasMoreElements()) {
+            String headerName = headerNames.nextElement();
+            String headerValue = request.getHeader(headerName);
+            headers.append(headerName).append(": ").append(headerValue).append(", ");
+        }
+        return headers.toString();
     }
 } 

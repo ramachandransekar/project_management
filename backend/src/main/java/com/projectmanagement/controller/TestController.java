@@ -43,4 +43,13 @@ public class TestController {
         response.put("status", "success");
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/auth-test")
+    public ResponseEntity<Map<String, Object>> authTest() {
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "Authentication is working!");
+        response.put("timestamp", System.currentTimeMillis());
+        response.put("status", "success");
+        return ResponseEntity.ok(response);
+    }
 } 
