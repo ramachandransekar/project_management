@@ -59,7 +59,11 @@ public class WebSecurityConfig {
             .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> 
-                auth.requestMatchers("/api/auth/signin").permitAll()
+                auth.requestMatchers("/").permitAll() // Root path for health checks
+                    .requestMatchers("/health").permitAll() // Health check endpoint
+                    .requestMatchers("/error").permitAll() // Error pages
+                    .requestMatchers("/favicon.ico").permitAll() // Browser favicon requests
+                    .requestMatchers("/api/auth/signin").permitAll()
                     .requestMatchers("/api/auth/signup").permitAll()
                     .requestMatchers("/api/test/**").permitAll()
                     .requestMatchers("/api/projects/templates").permitAll()
