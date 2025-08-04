@@ -74,8 +74,8 @@ public class CorsConfig implements WebMvcConfigurer {
             "http://localhost:5173",           // Vite dev server
             "http://127.0.0.1:3000",          // Alternative local
             "http://127.0.0.1:5173",          // Alternative Vite
-            "https://project-management-frontend.onrender.com", // Production frontend (if deployed)
-            "https://your-frontend-domain.com" // Replace with your actual frontend domain
+            "https://project-management-ynzl.vercel.app", // Production frontend on Vercel
+            "https://project-management-frontend.onrender.com" // Alternative production frontend
         );
     }
 } 

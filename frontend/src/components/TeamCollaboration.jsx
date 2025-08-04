@@ -26,7 +26,7 @@ const TeamCollaboration = ({ projectId }) => {
     try {
       setLoading(true);
       console.log('Loading project members for project:', projectId);
-      const response = await fetch(`http://project-management-1-kkb0.onrender.com/api/team/project/${projectId}/members`, {
+      const response = await fetch(`https://project-management-1-kkb0.onrender.com/api/team/project/${projectId}/members`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -54,7 +54,7 @@ const TeamCollaboration = ({ projectId }) => {
 
   const loadProjectActivity = async () => {
     try {
-      const response = await fetch(`http://project-management-1-kkb0.onrender.com/api/team/project/${projectId}/activity/recent?limit=20`, {
+      const response = await fetch(`https://project-management-1-kkb0.onrender.com/api/team/project/${projectId}/activity/recent?limit=20`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -72,7 +72,7 @@ const TeamCollaboration = ({ projectId }) => {
 
   const loadProjectNote = async () => {
     try {
-      const response = await fetch(`http://project-management-1-kkb0.onrender.com/api/team/project/${projectId}/note`, {
+      const response = await fetch(`https://project-management-1-kkb0.onrender.com/api/team/project/${projectId}/note`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -91,7 +91,7 @@ const TeamCollaboration = ({ projectId }) => {
   const loadAvailableUsers = async () => {
     try {
       console.log('Loading available users');
-      const response = await fetch('http://project-management-1-kkb0.onrender.com/api/auth/users', {
+      const response = await fetch('https://project-management-1-kkb0.onrender.com/api/auth/users', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -121,7 +121,7 @@ const TeamCollaboration = ({ projectId }) => {
 
     try {
       setLoading(true);
-      const response = await fetch(`http://project-management-1-kkb0.onrender.com/api/team/project/${projectId}/add-member`, {
+      const response = await fetch(`https://project-management-1-kkb0.onrender.com/api/team/project/${projectId}/add-member`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -152,7 +152,7 @@ const TeamCollaboration = ({ projectId }) => {
     }
 
     try {
-      const response = await fetch(`http://project-management-1-kkb0.onrender.com/api/team/project/${projectId}/remove-member/${userId}`, {
+      const response = await fetch(`https://project-management-1-kkb0.onrender.com/api/team/project/${projectId}/remove-member/${userId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -173,7 +173,7 @@ const TeamCollaboration = ({ projectId }) => {
 
   const saveProjectNote = async () => {
     try {
-      const response = await fetch(`http://project-management-1-kkb0.onrender.com/api/team/project/${projectId}/note`, {
+      const response = await fetch(`https://project-management-1-kkb0.onrender.com/api/team/project/${projectId}/note`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

@@ -50,7 +50,7 @@ const Dashboard = () => {
       const token = localStorage.getItem('token');
       if (!token) return;
 
-              const response = await fetch('http://project-management-1-kkb0.onrender.com/api/projects', {
+              const response = await fetch('https://project-management-1-kkb0.onrender.com/api/projects', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -70,7 +70,7 @@ const Dashboard = () => {
       const token = localStorage.getItem('token');
       if (!token) return;
 
-              const response = await fetch('http://project-management-1-kkb0.onrender.com/api/projects/statistics', {
+              const response = await fetch('https://project-management-1-kkb0.onrender.com/api/projects/statistics', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -126,7 +126,7 @@ const Dashboard = () => {
       const token = localStorage.getItem('token');
       if (!token) return;
 
-              const response = await fetch(`http://project-management-1-kkb0.onrender.com/api/projects/${projectId}`, {
+              const response = await fetch(`https://project-management-1-kkb0.onrender.com/api/projects/${projectId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -158,7 +158,7 @@ const Dashboard = () => {
       const token = localStorage.getItem('token');
       if (!token) return false;
 
-              const response = await fetch(`http://project-management-1-kkb0.onrender.com/api/tasks?projectId=${projectId}`, {
+              const response = await fetch(`https://project-management-1-kkb0.onrender.com/api/tasks?projectId=${projectId}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create axios instance
 const api = axios.create({
-  baseURL: 'http://project-management-1-kkb0.onrender.com/api',
+  baseURL: 'https://project-management-1-kkb0.onrender.com/api',
   timeout: 10000,
 });
 
