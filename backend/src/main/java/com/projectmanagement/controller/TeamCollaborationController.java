@@ -14,7 +14,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/team")
-@CrossOrigin(origins = "*")
 public class TeamCollaborationController {
     
     @Autowired

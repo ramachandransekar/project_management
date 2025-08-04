@@ -14,7 +14,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/tasks")
-@CrossOrigin(origins = "*", maxAge = 3600)
 public class TaskController {
     
     @Autowired

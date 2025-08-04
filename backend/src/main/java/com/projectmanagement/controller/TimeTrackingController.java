@@ -19,7 +19,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/time-tracking")
-@CrossOrigin(origins = "*")
 public class TimeTrackingController {
     
     @Autowired
