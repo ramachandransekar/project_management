@@ -1,0 +1,341 @@
+.project-view-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.project-view-modal {
+  background: linear-gradient(135deg, #001a33 0%, #003366 100%);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: 16px;
+  padding: 0;
+  width: 90%;
+  max-width: 1200px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: slideInUp 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 30px;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+  background: rgba(0, 40, 80, 0.5);
+  border-radius: 16px 16px 0 0;
+}
+
+.modal-header h2 {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: #b0e0e6;
+  font-size: 28px;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  background: rgba(231, 76, 60, 0.2);
+  color: #e74c3c;
+  transform: scale(1.1);
+}
+
+.project-tabs {
+  display: flex;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+  background: rgba(0, 40, 80, 0.3);
+}
+
+.project-tabs .tab-button {
+  flex: 1;
+  padding: 16px 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #b0e0e6;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+}
+
+.project-tabs .tab-button:hover {
+  color: #00ffff;
+  background: rgba(0, 255, 255, 0.1);
+}
+
+.project-tabs .tab-button.active {
+  color: #00ffff;
+  border-bottom-color: #00ffff;
+  background: rgba(0, 255, 255, 0.1);
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.project-view-content {
+  padding: 30px;
+}
+
+.project-header-section {
+  margin-bottom: 24px;
+}
+
+.project-name {
+  margin: 0 0 12px 0;
+  color: #00ffff;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.project-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.priority-badge,
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.project-description-section {
+  margin-bottom: 24px;
+}
+
+.project-description-section h4 {
+  margin: 0 0 8px 0;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.2);
+}
+
+.project-description {
+  margin: 0;
+  color: #b0e0e6;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.project-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-item label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #b0e0e6;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-item span {
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.project-id {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: #b0e0e6;
+  background: rgba(0, 20, 40, 0.8);
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.project-meta-section {
+  background: rgba(0, 40, 80, 0.5);
+  border-radius: 8px;
+  padding: 16px;
+  border: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.project-meta-section h4 {
+  margin: 0 0 12px 0;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.2);
+}
+
+.meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.meta-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.meta-item:last-child {
+  border-bottom: none;
+}
+
+.meta-label {
+  font-size: 12px;
+  color: #b0e0e6;
+  font-weight: 500;
+}
+
+.meta-value {
+  font-size: 12px;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.modal-actions {
+  padding: 20px 30px 30px 30px;
+  border-top: 1px solid rgba(0, 255, 255, 0.2);
+  display: flex;
+  justify-content: flex-end;
+  background: rgba(0, 40, 80, 0.3);
+  border-radius: 0 0 16px 16px;
+}
+
+.btn-close {
+  background: linear-gradient(135deg, #00ffff 0%, #0080ff 100%);
+  color: #001a33;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 255, 255, 0.3);
+  min-width: 120px;
+}
+
+.btn-close:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 255, 255, 0.4);
+  background: linear-gradient(135deg, #00ffff 0%, #00ccff 100%);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .project-view-modal {
+    width: 95%;
+    margin: 20px;
+  }
+  
+  .project-details-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .meta-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .project-name {
+    font-size: 24px;
+  }
+  
+  .modal-header,
+  .project-view-content {
+    padding: 20px;
+  }
+  
+  .modal-actions {
+    padding: 16px 20px 20px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-view-modal {
+    width: 98%;
+    margin: 10px;
+  }
+  
+  .project-badges {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .priority-badge,
+  .status-badge {
+    align-self: flex-start;
+  }
+  
+  .modal-header h2 {
+    font-size: 20px;
+  }
+  
+  .project-view-content {
+    padding: 16px;
+  }
+  
+  .project-name {
+    font-size: 20px;
+  }
+} 
