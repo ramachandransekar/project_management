@@ -155,7 +155,7 @@ docker exec -i project_management_db psql -U postgres project_management < backu
 
 ### Health Check Endpoints
 
-- **Backend**: `http://localhost:8080/api/auth/test`
+- **Backend**: `http://project-management-1-kkb0.onrender.com/api/auth/test`
 - **Database**: PostgreSQL health check
 - **Redis**: Redis ping command
 

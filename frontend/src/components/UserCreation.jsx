@@ -92,7 +92,7 @@ const UserCreation = () => {
         throw new Error('Authentication required');
       }
 
-      const response = await fetch('http://localhost:8080/api/auth/create-user', {
+      const response = await fetch('http://project-management-1-kkb0.onrender.com/api/auth/create-user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -32,7 +32,7 @@ const ProjectEdit = ({ project, onProjectUpdated, onCancel }) => {
 
   const fetchTemplates = async () => {
     try {
-      const response = await fetch('http://localhost:8080/api/projects/templates');
+      const response = await fetch('http://project-management-1-kkb0.onrender.com/api/projects/templates');
       if (response.ok) {
         const templatesData = await response.json();
         setTemplates(templatesData);
@@ -62,7 +62,7 @@ const ProjectEdit = ({ project, onProjectUpdated, onCancel }) => {
         return;
       }
 
-      const response = await fetch(`http://localhost:8080/api/projects/${project.id}`, {
+      const response = await fetch(`http://project-management-1-kkb0.onrender.com/api/projects/${project.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

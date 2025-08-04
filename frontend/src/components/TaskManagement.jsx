@@ -47,7 +47,7 @@ const TaskManagement = () => {
       const token = localStorage.getItem('token');
       if (!token) return;
 
-      const response = await fetch('http://localhost:8080/api/projects', {
+      const response = await fetch('http://project-management-1-kkb0.onrender.com/api/projects', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -67,7 +67,7 @@ const TaskManagement = () => {
       const token = localStorage.getItem('token');
       if (!token) return;
 
-      const response = await fetch('http://localhost:8080/api/auth/users/list', {
+      const response = await fetch('http://project-management-1-kkb0.onrender.com/api/auth/users/list', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -87,7 +87,7 @@ const TaskManagement = () => {
       const token = localStorage.getItem('token');
       if (!token) return;
 
-      const response = await fetch('http://localhost:8080/api/tasks', {
+      const response = await fetch('http://project-management-1-kkb0.onrender.com/api/tasks', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -108,7 +108,7 @@ const TaskManagement = () => {
       const token = localStorage.getItem('token');
       if (!token) return null;
 
-      const response = await fetch(`http://localhost:8080/api/tasks/${taskId}`, {
+      const response = await fetch(`http://project-management-1-kkb0.onrender.com/api/tasks/${taskId}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -138,8 +138,8 @@ const TaskManagement = () => {
 
       const isUpdate = newTask.id; // Check if we're updating an existing task
       const url = isUpdate 
-        ? `http://localhost:8080/api/tasks/${newTask.id}`
-        : 'http://localhost:8080/api/tasks';
+        ? `http://project-management-1-kkb0.onrender.com/api/tasks/${newTask.id}`
+        : 'http://project-management-1-kkb0.onrender.com/api/tasks';
       
       const method = isUpdate ? 'PUT' : 'POST';
 
@@ -201,7 +201,7 @@ const TaskManagement = () => {
       const task = tasks.find(t => t.id === taskId);
       if (!task) return;
 
-      const response = await fetch(`http://localhost:8080/api/tasks/${taskId}`, {
+      const response = await fetch(`http://project-management-1-kkb0.onrender.com/api/tasks/${taskId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -234,7 +234,7 @@ const TaskManagement = () => {
         const token = localStorage.getItem('token');
         if (!token) return;
 
-        const response = await fetch(`http://localhost:8080/api/tasks/${taskId}`, {
+        const response = await fetch(`http://project-management-1-kkb0.onrender.com/api/tasks/${taskId}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`
@@ -282,7 +282,7 @@ const TaskManagement = () => {
       const token = localStorage.getItem('token');
       if (!token) return;
 
-      const response = await fetch(`http://localhost:8080/api/team/tasks/${selectedTask.id}/comment`, {
+      const response = await fetch(`http://project-management-1-kkb0.onrender.com/api/team/tasks/${selectedTask.id}/comment`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -335,7 +335,7 @@ const TaskManagement = () => {
       const formData = new FormData();
       formData.append('file', selectedFile);
 
-      const response = await fetch(`http://localhost:8080/api/tasks/${selectedTask.id}/attachments`, {
+      const response = await fetch(`http://project-management-1-kkb0.onrender.com/api/tasks/${selectedTask.id}/attachments`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -363,7 +363,7 @@ const TaskManagement = () => {
       const token = localStorage.getItem('token');
       if (!token) return;
 
-      const response = await fetch(`http://localhost:8080/api/tasks/${selectedTask.id}`, {
+      const response = await fetch(`http://project-management-1-kkb0.onrender.com/api/tasks/${selectedTask.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -470,7 +470,7 @@ const TaskManagement = () => {
       const token = localStorage.getItem('token');
       if (!token) return;
 
-      const response = await fetch(`http://localhost:8080/api/tasks/${draggedTask.id}`, {
+      const response = await fetch(`http://project-management-1-kkb0.onrender.com/api/tasks/${draggedTask.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

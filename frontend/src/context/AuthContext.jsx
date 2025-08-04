@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (usernameOrEmail, password) => {
     try {
-      const response = await axios.post('http://localhost:8080/api/auth/signin', {
+      const response = await axios.post('http://project-management-1-kkb0.onrender.com/api/auth/signin', {
         usernameOrEmail,
         password
       });
@@ -54,7 +54,7 @@ export const AuthProvider = ({ children }) => {
 
   const signup = async (userData) => {
     try {
-      const response = await axios.post('http://localhost:8080/api/auth/signup', userData);
+      const response = await axios.post('http://project-management-1-kkb0.onrender.com/api/auth/signup', userData);
       
       // Signup response doesn't include token, so user is not logged in
       return { 

@@ -83,7 +83,7 @@ const TimeTracking = () => {
     try {
       setIsLoading(true);
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:8080/api/projects', {
+      const response = await axios.get('http://project-management-1-kkb0.onrender.com/api/projects', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setProjects(response.data);
@@ -99,7 +99,7 @@ const TimeTracking = () => {
   const fetchTasks = async (projectId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://localhost:8080/api/tasks/project/${projectId}`, {
+      const response = await axios.get(`http://project-management-1-kkb0.onrender.com/api/tasks/project/${projectId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setTasks(response.data);
@@ -113,7 +113,7 @@ const TimeTracking = () => {
     try {
       setIsLoading(true);
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:8080/api/time-tracking/entries', {
+      const response = await axios.get('http://project-management-1-kkb0.onrender.com/api/time-tracking/entries', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setTimeEntries(response.data);
@@ -129,7 +129,7 @@ const TimeTracking = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.get(
-        `http://localhost:8080/api/time-tracking/projects/${projectId}/summary?startDate=${selectedDateRange.startDate.toISOString().split('T')[0]}&endDate=${selectedDateRange.endDate.toISOString().split('T')[0]}`,
+        `http://project-management-1-kkb0.onrender.com/api/time-tracking/projects/${projectId}/summary?startDate=${selectedDateRange.startDate.toISOString().split('T')[0]}&endDate=${selectedDateRange.endDate.toISOString().split('T')[0]}`,
         {
           headers: { Authorization: `Bearer ${token}` }
         }
@@ -239,7 +239,7 @@ const TimeTracking = () => {
         isBillable: false
       };
 
-      await axios.post('http://localhost:8080/api/time-tracking/entries', timeEntryData, {
+      await axios.post('http://project-management-1-kkb0.onrender.com/api/time-tracking/entries', timeEntryData, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -277,7 +277,7 @@ const TimeTracking = () => {
         isBillable: manualEntry.isBillable
       };
 
-      await axios.post('http://localhost:8080/api/time-tracking/entries', timeEntryData, {
+      await axios.post('http://project-management-1-kkb0.onrender.com/api/time-tracking/entries', timeEntryData, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -362,7 +362,7 @@ const TimeTracking = () => {
     try {
       setIsLoading(true);
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:8080/api/time-tracking/entries/submit', selectedEntriesForSubmission, {
+      await axios.post('http://project-management-1-kkb0.onrender.com/api/time-tracking/entries/submit', selectedEntriesForSubmission, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -380,7 +380,7 @@ const TimeTracking = () => {
   const deleteTimeEntry = async (entryId) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:8080/api/time-tracking/entries/${entryId}`, {
+      await axios.delete(`http://project-management-1-kkb0.onrender.com/api/time-tracking/entries/${entryId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 

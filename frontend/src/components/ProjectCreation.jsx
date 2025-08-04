@@ -23,7 +23,7 @@ const ProjectCreation = ({ onProjectCreated }) => {
 
   const fetchProjectTemplates = async () => {
     try {
-      const response = await fetch('http://localhost:8080/api/projects/templates');
+      const response = await fetch('http://project-management-1-kkb0.onrender.com/api/projects/templates');
       if (response.ok) {
         const templates = await response.json();
         setProjectTemplates(templates);
@@ -68,7 +68,7 @@ const ProjectCreation = ({ onProjectCreated }) => {
         throw new Error('Authentication required');
       }
 
-      const response = await fetch('http://localhost:8080/api/projects', {
+      const response = await fetch('http://project-management-1-kkb0.onrender.com/api/projects', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

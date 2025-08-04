@@ -28,7 +28,7 @@ const ProgressTracking = () => {
   const fetchProjects = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:8080/api/progress/projects', {
+      const response = await fetch('http://project-management-1-kkb0.onrender.com/api/progress/projects', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -52,7 +52,7 @@ const ProgressTracking = () => {
   const fetchProjectProgress = async (projectId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:8080/api/progress/project/${projectId}`, {
+      const response = await fetch(`http://project-management-1-kkb0.onrender.com/api/progress/project/${projectId}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -71,7 +71,7 @@ const ProgressTracking = () => {
   const fetchTeamLeaderboard = async (projectId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:8080/api/progress/project/${projectId}/leaderboard`, {
+      const response = await fetch(`http://project-management-1-kkb0.onrender.com/api/progress/project/${projectId}/leaderboard`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'

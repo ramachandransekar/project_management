@@ -4,7 +4,7 @@ This document describes the REST API endpoints for the Project Management system
 
 ## Base URL
 ```
-http://localhost:8080/api/projects
+http://project-management-1-kkb0.onrender.com/api/projects
 ```
 
 ## Authentication
